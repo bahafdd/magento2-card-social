@@ -2,7 +2,7 @@
 
 ---
 
-```markdown
+
 # Themestar_SocialCard
 
 **Themestar_SocialCard** is a powerful Magento 2 module that automatically generates SEO-friendly social meta tags for **Twitter Cards**, **Open Graph** (Facebook, LinkedIn), and **Pinterest Rich Pins**.
@@ -96,13 +96,9 @@ MIT License (Feel free to modify or include in commercial projects)
 
 ## Need Help?
 
-Open an issue or drop us a message at [github.com/themestar](https://github.com/themestar)
+Open an issue or drop us a message at [magentoarabic.com](https://magentoarabic.com/support)
 
 ---
 
 Make your store **social media ready** in one step with **Themestar_SocialCard**!
-```
 
----
-
-Let me know if you’d like this saved as a file or pushed into your module structure.
