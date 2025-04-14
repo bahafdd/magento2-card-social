@@ -84,7 +84,7 @@ These settings control how meta tags appear when specific images or content are 
 - Magento 2.4.x or above
 - PHP 7.4+ / 8.x
 - Enabled `Themestar_SocialCard` module
-- Fallback images (optional) should be uploaded to `pub/media/meta/`
+- Fallback images (optional) should be uploaded to `pub/media/socialcard/`
 
 ---
 
