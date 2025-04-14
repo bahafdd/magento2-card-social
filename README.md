@@ -72,7 +72,7 @@ These settings control how meta tags appear when specific images or content are 
 
 - Pulls data from:
   - **Product Page**: Uses product image and description
-  - **Category Page**: Uses category image
+  - **Category Page**: Uses fallback image
   - **CMS Page**: Uses fallback image
 - Dynamically builds meta tags and injects into the page `<head>`
 - No third-party dependencies
