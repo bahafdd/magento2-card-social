@@ -62,7 +62,7 @@ You will find the following options:
 - **Twitter Username** – Your brand's Twitter handle (e.g., `@brand`)
 - **Twitter Author** – Author/creator Twitter handle
 - **Default Card Type** – Choose between `summary` or `summary_large_image` or 'App' or 'Player'
-- **Fallback Images** – Comma-separated image names stored in `pub/media/meta/`
+- **Fallback Images** – Comma-separated image names stored in `pub/media/socialcard/`
 
 These settings control how meta tags appear when specific images or content are not available on the current page.
 
