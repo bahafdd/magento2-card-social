@@ -1,0 +1,59 @@
+<?php
+/** @var \Themestar\SocialCard\Block\TwitterMeta $block */
+$twitterData = $block->getTwitterData();
+if (empty($twitterData)) {
+    return;
+}
+
+$url = $twitterData['url'] ?? $block->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
+$siteName = $twitterData['site_name'] ?? ($block->getLayout()->getBlock('logo')->getLabel() ?? 'Your Site');
+$image = $twitterData['image'] ?? ($twitterData['fallback_images'][0] ?? '');
+
+// Sanitize description to ensure no HTML is output
+$rawDescription = $twitterData['description'] ?? '';
+$cleanDescription = $escaper->escapeHtml(strip_tags($rawDescription));
+
+// Get logo
+$logoBlock = $block->getLayout()->getBlock('logo');
+$logoUrl = $logoBlock ? $logoBlock->getLogoSrc() : $block->getViewFileUrl('Magento_Theme::images/logo.svg');
+?>
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="<?= $escaper->escapeHtml($twitterData['card_type'] ?? 'summary') ?>" />
+<?php if (!empty($twitterData['username'])): ?>
+    <meta name="twitter:site" content="@<?= $escaper->escapeHtml($twitterData['username']) ?>" />
+<?php endif; ?>
+<?php if (!empty($twitterData['author'])): ?>
+    <meta name="twitter:creator" content="@<?= $escaper->escapeHtml($twitterData['author']) ?>" />
+<?php endif; ?>
+<?php if (!empty($twitterData['title'])): ?>
+    <meta name="twitter:title" content="<?= $escaper->escapeHtml($twitterData['title']) ?>" />
+<?php endif; ?>
+<?php if (!empty($cleanDescription)): ?>
+    <meta name="twitter:description" content="<?= $cleanDescription ?>" />
+<?php endif; ?>
+<?php if (!empty($image)): ?>
+    <meta name="twitter:image" content="<?= $escaper->escapeUrl($image) ?>" />
+<?php endif; ?>
+
+<!-- Open Graph (Facebook / LinkedIn / Pinterest) -->
+<meta property="og:type" content="website" />
+<?php if (!empty($twitterData['title'])): ?>
+    <meta property="og:title" content="<?= $escaper->escapeHtml($twitterData['title']) ?>" />
+<?php endif; ?>
+<?php if (!empty($cleanDescription)): ?>
+    <meta property="og:description" content="<?= $cleanDescription ?>" />
+<?php endif; ?>
+<?php if (!empty($image)): ?>
+    <meta property="og:image" content="<?= $escaper->escapeUrl($image) ?>" />
+<?php endif; ?>
+<meta property="og:url" content="<?= $escaper->escapeUrl($url) ?>" />
+<meta property="og:site_name" content="<?= $escaper->escapeHtml($siteName) ?>" />
+
+<!-- Optional custom tag -->
+<?php if (!empty($logoUrl)): ?>
+    <meta property="og:logo" content="<?= $escaper->escapeUrl($logoUrl) ?>" />
+<?php endif; ?>
+
+<!-- Pinterest Rich Pin -->
+<meta name="pinterest-rich-pin" content="true" />

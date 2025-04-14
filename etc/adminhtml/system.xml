@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- @category    Themestar -->
+<!-- @package     Themestar_SocialCard -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/system_file.xsd">
+    <system>
+        <tab id="themestar" translate="label" sortOrder="100">
+            <label>Themestar</label>
+        </tab>
+        <section id="socialcard_settings" translate="label" sortOrder="900" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Themestar Social Card</label>
+            <tab>themestar</tab>
+            <resource>Magento_Backend::stores</resource>
+            <group id="socialcard" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Social Card Configuration</label>
+
+                <!-- Enable Module -->
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Social Card</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable or disable the social card generation</comment>
+                </field>
+
+                <!-- Twitter Username -->
+                <field id="twitter_username" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Twitter Username</label>
+                    <comment>Enter your Twitter username (without @)</comment>
+                </field>
+
+                <!-- Twitter Author -->
+                <field id="twitter_author" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Twitter Author</label>
+                    <comment>Enter the author's Twitter username (without @)</comment>
+                </field>
+                
+                <field id="product_card_type" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Twitter Card Type for Product Pages</label>
+                    <source_model>Themestar\SocialCard\Model\Config\Source\CardType</source_model>
+                    <comment>Select the default card type for product pages.</comment>
+                </field>
+
+                <field id="category_card_type" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Twitter Card Type for Category Pages</label>
+                    <source_model>Themestar\SocialCard\Model\Config\Source\CardType</source_model>
+                    <comment>Select the default card type for category pages.</comment>
+                </field>
+
+                <!-- Removed duplicate cms_card_type field -->
+
+                <!-- Fallback Image (image upload) -->
+                <field id="fallback_image" translate="label" type="image" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Fallback Image (png, jpg, or gif)</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">socialcard</upload_dir>
+                    <base_url type="media" scope_info="1">socialcard/</base_url>
+                </field>
+
+            </group>
+        </section>
+    </system>
+</config>
