@@ -6,52 +6,57 @@ if (empty($twitterData)) {
 }
 
 $url = $twitterData['url'] ?? $block->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
+$title = $twitterData['title'] ?? '';
+$description = $twitterData['description'] ?? '';
+$cardType = $twitterData['card_type'] ?? 'summary';
+$username = $twitterData['username'] ?? '';
+$author = $twitterData['author'] ?? '';
+$image = $twitterData['image'] ?? '';
 $siteName = $twitterData['site_name'] ?? ($block->getLayout()->getBlock('logo')->getLabel() ?? 'Your Site');
-$image = $twitterData['image'] ?? ($twitterData['fallback_images'][0] ?? '');
 
-// Sanitize description to ensure no HTML is output
-$rawDescription = $twitterData['description'] ?? '';
-$cleanDescription = $escaper->escapeHtml(strip_tags($rawDescription));
+// Sanitize title and description
+$cleanTitle = $escaper->escapeHtml(strip_tags($title));
+$cleanDescription = $escaper->escapeHtml(strip_tags($description));
 
-// Get logo
+// Fallback logo for custom OG tag
 $logoBlock = $block->getLayout()->getBlock('logo');
 $logoUrl = $logoBlock ? $logoBlock->getLogoSrc() : $block->getViewFileUrl('Magento_Theme::images/logo.svg');
 ?>
 
 <!-- Twitter Card -->
-<meta name="twitter:card" content="<?= $escaper->escapeHtml($twitterData['card_type'] ?? 'summary') ?>" />
-<?php if (!empty($twitterData['username'])): ?>
-    <meta name="twitter:site" content="@<?= $escaper->escapeHtml($twitterData['username']) ?>" />
+<meta name="twitter:card" content="<?= $escaper->escapeHtml($cardType) ?>" />
+<?php if ($username): ?>
+    <meta name="twitter:site" content="@<?= $escaper->escapeHtml($username) ?>" />
 <?php endif; ?>
-<?php if (!empty($twitterData['author'])): ?>
-    <meta name="twitter:creator" content="@<?= $escaper->escapeHtml($twitterData['author']) ?>" />
+<?php if ($author): ?>
+    <meta name="twitter:creator" content="@<?= $escaper->escapeHtml($author) ?>" />
 <?php endif; ?>
-<?php if (!empty($twitterData['title'])): ?>
-    <meta name="twitter:title" content="<?= $escaper->escapeHtml($twitterData['title']) ?>" />
+<?php if ($cleanTitle): ?>
+    <meta name="twitter:title" content="<?= $cleanTitle ?>" />
 <?php endif; ?>
-<?php if (!empty($cleanDescription)): ?>
+<?php if ($cleanDescription): ?>
     <meta name="twitter:description" content="<?= $cleanDescription ?>" />
 <?php endif; ?>
-<?php if (!empty($image)): ?>
+<?php if ($image): ?>
     <meta name="twitter:image" content="<?= $escaper->escapeUrl($image) ?>" />
 <?php endif; ?>
 
 <!-- Open Graph (Facebook / LinkedIn / Pinterest) -->
 <meta property="og:type" content="website" />
-<?php if (!empty($twitterData['title'])): ?>
-    <meta property="og:title" content="<?= $escaper->escapeHtml($twitterData['title']) ?>" />
+<?php if ($cleanTitle): ?>
+    <meta property="og:title" content="<?= $cleanTitle ?>" />
 <?php endif; ?>
-<?php if (!empty($cleanDescription)): ?>
+<?php if ($cleanDescription): ?>
     <meta property="og:description" content="<?= $cleanDescription ?>" />
 <?php endif; ?>
-<?php if (!empty($image)): ?>
+<?php if ($image): ?>
     <meta property="og:image" content="<?= $escaper->escapeUrl($image) ?>" />
 <?php endif; ?>
 <meta property="og:url" content="<?= $escaper->escapeUrl($url) ?>" />
 <meta property="og:site_name" content="<?= $escaper->escapeHtml($siteName) ?>" />
 
-<!-- Optional custom tag -->
-<?php if (!empty($logoUrl)): ?>
+<!-- Optional Custom OG Logo Tag -->
+<?php if ($logoUrl): ?>
     <meta property="og:logo" content="<?= $escaper->escapeUrl($logoUrl) ?>" />
 <?php endif; ?>
 
