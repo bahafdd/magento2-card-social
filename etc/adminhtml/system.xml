@@ -31,27 +31,35 @@
                     <label>Twitter Author</label>
                     <comment>Enter the author's Twitter username (without @)</comment>
                 </field>
-                
+
+                <!-- Product Card Type -->
                 <field id="product_card_type" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Twitter Card Type for Product Pages</label>
                     <source_model>Themestar\SocialCard\Model\Config\Source\CardType</source_model>
                     <comment>Select the default card type for product pages.</comment>
                 </field>
 
+                <!-- Category Card Type -->
                 <field id="category_card_type" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Twitter Card Type for Category Pages</label>
                     <source_model>Themestar\SocialCard\Model\Config\Source\CardType</source_model>
                     <comment>Select the default card type for category pages.</comment>
                 </field>
 
-                <!-- Removed duplicate cms_card_type field -->
+                <!-- CMS Card Type -->
+                <field id="cms_card_type" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Twitter Card Type for CMS Pages</label>
+                    <source_model>Themestar\SocialCard\Model\Config\Source\CardType</source_model>
+                    <comment>Select the default card type for CMS pages.</comment>
+                </field>
 
-                <!-- Fallback Image (image upload) -->
+                <!-- Fallback Image -->
                 <field id="fallback_image" translate="label" type="image" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Fallback Image (png, jpg, or gif)</label>
                     <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
                     <upload_dir config="system/filesystem/media" scope_info="1">socialcard</upload_dir>
                     <base_url type="media" scope_info="1">socialcard/</base_url>
+                    <comment>This image will be used for category or CMS pages if no specific image is available.</comment>
                 </field>
 
             </group>
