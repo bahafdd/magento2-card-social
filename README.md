@@ -54,7 +54,7 @@ bin/magento cache:flush
 
 Navigate to:
 
-`Stores > Configuration > Themestar > Social Card`
+`Stores > Configuration > Themestar > Themestar Social Card`
 
 You will find the following options:
 
